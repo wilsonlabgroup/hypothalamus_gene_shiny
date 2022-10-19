@@ -19,9 +19,9 @@ utr_de <- readRDS("data/hypo_utr_2021_de_result_list_2022-10-19.rds")
 
 # Reformat DE tables
 utr_de_table <- bind_rows(lapply(names(utr_de), function(x) mutate(utr_de[[x]], comparison = x)))
-# utr_de_all_table <- utr_de_table[,c(7,1,2,6,8)] %>% # This information is not available from the file Dustin sent over
-#   mutate(FDR = -log10(FDR)) %>%
-#   dplyr::rename(ensembl_id = genes, ID = genename, log2FC = logFC, `-log10(FDR)` = FDR)
+utr_de_all_table <- utr_de_table[,c(7,1,2,6,8)] %>%
+  mutate(FDR = -log10(FDR)) %>%
+  dplyr::rename(ensembl_id = genes, ID = genename, log2FC = logFC, `-log10(FDR)` = FDR)
 utr_de_table <- utr_de_table[,c(7,1,2,6,8)] %>%
   filter(., abs(logFC) > log2(1.5) & FDR < 0.05) %>%
   mutate(FDR = -log10(FDR)) %>%

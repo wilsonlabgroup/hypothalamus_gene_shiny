@@ -405,11 +405,11 @@ server <- function(input, output) {
                              de_table = utr_de_table,
                              counttype = "genes")
     
-    # gtable_nofilt <- print_de_table(genelist = data()[["genes"]],
-    #                                 de_table = utr_de_all_table,
-    #                                 counttype = "genes")
+    gtable_nofilt <- print_de_table(genelist = data()[["genes"]],
+                                    de_table = utr_de_all_table,
+                                    counttype = "genes")
     gtable <- add_study(gtable)
-    # gtable_nofilt <- add_study(gtable_nofilt)
+    gtable_nofilt <- add_study(gtable_nofilt)
     
     norm_data_type <- expr_table(data()[["genes"]], utr_normcounts)
     log2_data_type <- expr_table(data()[["genes"]], utr_log2)
@@ -417,7 +417,7 @@ server <- function(input, output) {
     return(list("gplot" = gplot,
                 "num_genes" = num_genes,
                 "gtable" = gtable,
-                # "gtable_nofilt" = gtable_nofilt,
+                "gtable_nofilt" = gtable_nofilt,
                 "norm_data_type" = norm_data_type,
                 "log2_data_type" = log2_data_type))
   })
@@ -456,34 +456,34 @@ server <- function(input, output) {
           }
         )
       }
-      # if(input$de_gene_filt == 2) { # Info not available from the DE object Dustin sent
-      #   gene_de_table <- gene_de[["gtable_nofilt"]]
-      #   if(ncol(gene_de_table) > 1) {
-      #     shinyjs::show(id = "save_de_gene_text")
-      #     shinyjs::show(id = "save_txt_de_genes")
-      #     shinyjs::show(id = "save_csv_de_genes")
-      #   }
-      #   # Save as txt file with no DE filt
-      #   output$save_txt_de_genes <- downloadHandler(
-      #     filename <- function() {
-      #       paste0(Sys.Date(), "_de_nofilt_genes.txt")
-      #     },
-      #     content <- function(file) {
-      #       write.table(gene_de_table, file,
-      #                   quote = F, sep = "\t", col.names = T, row.names = F)
-      #     }
-      #   )
-      #   # Save as csv file with no DE filt
-      #   output$save_csv_de_genes <- downloadHandler(
-      #     filename <- function() {
-      #       paste0(Sys.Date(), "_de_nofilt_genes.csv")
-      #     },
-      #     content <- function(file) {
-      #       write.csv(gene_de_table, file,
-      #                 quote = F, row.names = F)
-      #     }
-      #   )
-      # }
+      if(input$de_gene_filt == 2) {
+        gene_de_table <- gene_de[["gtable_nofilt"]]
+        if(ncol(gene_de_table) > 1) {
+          shinyjs::show(id = "save_de_gene_text")
+          shinyjs::show(id = "save_txt_de_genes")
+          shinyjs::show(id = "save_csv_de_genes")
+        }
+        # Save as txt file with no DE filt
+        output$save_txt_de_genes <- downloadHandler(
+          filename <- function() {
+            paste0(Sys.Date(), "_de_nofilt_genes.txt")
+          },
+          content <- function(file) {
+            write.table(gene_de_table, file,
+                        quote = F, sep = "\t", col.names = T, row.names = F)
+          }
+        )
+        # Save as csv file with no DE filt
+        output$save_csv_de_genes <- downloadHandler(
+          filename <- function() {
+            paste0(Sys.Date(), "_de_nofilt_genes.csv")
+          },
+          content <- function(file) {
+            write.csv(gene_de_table, file,
+                      quote = F, row.names = F)
+          }
+        )
+      }
       output$de_gene_table <- renderTable({
         gene_de_table
       },
