@@ -13,7 +13,12 @@ ui <- fluidPage(
                       h1("MOUSE HYPOTHALAMUS DATA HUB"),
                       br(),
                       p("Shiny app to visualize gene expression data generated",
-                        "from 3'UTR-seq."),
+                        "from 3'UTR-seq data generated across five timepoints
+                        and two sexes planning the Pubertal transition in the post-natal C57BL/6 mouse hypothalamus
+                        By levaraging an automated 3'UTR-seq library preparation approach we developed 
+                        (explained in detail at PMID 31221127),
+                        we could complete the full gene expression profiling in a single experimental 
+                        batch."),
                       # p("Raw data can be accessed at ",
                       #   a("E-MTAB-9459",
                       #     href = "https://www.ebi.ac.uk/biostudies/arrayexpress/studies/E-MTAB-9459",
@@ -23,6 +28,29 @@ ui <- fluidPage(
                       #     href = "https://www.ebi.ac.uk/biostudies/arrayexpress/studies/E-MTAB-9460",
                       #     target = "_blank")),
                       br(),
+                      
+                      img(src="hypo_overview.png", alt="data overview", class="picture"),
+                      
+                      br(),
+                      
+                      p("This app visualizes the distribution of individual genes and allows users 
+                        to return their gene expression values in each sample and p-value/fold-change 
+                        if the gene was differentially expressed (DE) at an age-group or timepoint."),
+                      
+                      br(),
+                      
+                      p("For any inquires please contact dustin-dot-sokolowski-at-sickkids-dot-ca."),
+                      
+                      br(),
+                      
+                      p("To visualize the transcriptional dynamics of the Pituitary gland 
+                        using the same mice, please visit their Shiny-App and Manuscript:"),
+                      
+                      p("Shiny-App: https://wilsonlab-sickkids-uoft.shinyapps.io/pituitary_gene_mirna_shiny/"),
+                      p("Associated manuscript: PMID 31221127"),
+                      
+                      br(),
+                      
                       h2("Features"),
                       br(),
                       h3("Data Browser"),
@@ -64,7 +92,7 @@ ui <- fluidPage(
                           br(),
                           br(),
                           h4("Text input examples:"),
-                          h4("Genes: Mkrn3,ENSMUSG00000040856.18"),
+                          h4("Genes: Mkrn3,ENSMUSG00000040856"),
                           br(),
                           helpText(h5("It is recommended to input <20 genes for viewing on the browser.")),
                           helpText(h5("If more genes are inputted, expression values and DE table can be downloaded.")),
