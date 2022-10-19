@@ -230,7 +230,7 @@ a {
 }
 
 a:hover {
-  color: var(--bs-teal);
+  color: var(--bs-cyan);
   text-decoration: none;
 }
 
@@ -11118,7 +11118,7 @@ label {
 }
 
 .navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover,.navbar-default .navbar-nav > .active > a {
-  color: var(--bs-teal) !important;
+  color: var(--bs-cyan) !important;
 }
 
 /* 
