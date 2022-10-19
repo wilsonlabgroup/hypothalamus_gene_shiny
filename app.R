@@ -46,8 +46,10 @@ ui <- fluidPage(
                       p("To visualize the transcriptional dynamics of the Pituitary gland 
                         using the same mice, please visit their Shiny-App and Manuscript:"),
                       
-                      p("Shiny-App: https://wilsonlab-sickkids-uoft.shinyapps.io/pituitary_gene_mirna_shiny/"),
-                      p("Associated manuscript: PMID 31221127"),
+                      p("Shiny-App: ",  a("Launch App",
+                          href = "https://wilsonlab-sickkids-uoft.shinyapps.io/pituitary_gene_mirna_shiny/",
+                          target = "_blank")),
+                      p("Associated manuscript: ", a("PMID 31221127", href = "https://pubmed.ncbi.nlm.nih.gov/36221127/", target ="_blank")),
                       
                       br(),
                       
