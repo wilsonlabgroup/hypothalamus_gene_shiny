@@ -73,8 +73,9 @@ parse_list <- function(genelist, type) {
   # Parse string for "ENSMUSG" to find a mouse ensembl genes
   ens_match <- genelist[grep("ENSMUSG", genelist, ignore.case = T)] 
   ensid_match <- ens_match[grep(".", ens_match, fixed = T)]
-  ens_match <- ens_match[-grep(".", ens_match, fixed = T)]
-  
+  if(length(ensid_match > 0)) {
+    ens_match <- ens_match[-grep(".", ens_match, fixed = T)]
+  }
   
   use_gene_ensembl_convert <- filter(gene_ensembl_convert,
                                      ensembl_gene_id %in% toupper(ens_match) |   # Ensure ENS matches are upper case
